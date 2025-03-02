@@ -1,4 +1,4 @@
-# InsulinA - Aplicación de Gestión de Diabetes
+# insulA - Aplicación de Gestión de Insulina
 
 *Leer esto en otros idiomas: [English](README.en.md)*
 
