@@ -1,111 +1,111 @@
-# InsulinA - Diabetes Management App
+# InsulinA - Aplicación de Gestión de Diabetes
 
-*Read this in other languages: [Español](README.es.md)*
+*Leer esto en otros idiomas: [English](README.en.md)*
 
-InsulinA is a comprehensive diabetes management application designed to help users track, monitor, and manage their diabetes effectively. The app provides an intuitive interface for logging glucose levels, insulin doses, and other important health metrics while offering insights and trends analysis.
+InsulinA es una aplicación integral para la gestión de la diabetes diseñada para ayudar a los usuarios a realizar seguimiento, monitorear y gestionar su diabetes de manera efectiva. La aplicación proporciona una interfaz intuitiva para registrar niveles de glucosa, dosis de insulina y otras métricas importantes de salud, mientras ofrece análisis de tendencias y estadísticas.
 
-## Features
+## Características
 
-### Current Features
-- 📊 Dashboard with key health metrics
-- 📝 Glucose level logging and tracking
-- 💉 Insulin dose recording
-- 📈 Trend analysis and visualization
-- 📅 Historical data view
-- ⚙️ Customizable settings
-- 📱 Mobile-first design with support for notches and dynamic islands
-- 🌓 Light/Dark mode support
+### Características Actuales
+- 📊 Panel de control con métricas clave de salud
+- 📝 Registro y seguimiento de niveles de glucosa
+- 💉 Registro de dosis de insulina
+- 📈 Análisis y visualización de tendencias
+- 📅 Vista de historial de datos
+- ⚙️ Configuraciones personalizables
+- 📱 Diseño orientado a dispositivos móviles con soporte para notch y dynamic island
+- 🌓 Soporte para modo claro/oscuro
 
-### Planned Features
-- 🔔 Reminders and notifications
-- 📊 Advanced analytics and reporting
-- 🤝 Healthcare provider integration
-- 📱 Export functionality
-- 🔄 Data synchronization across devices
-- 👥 Family member/caregiver access
-- 🍎 Food and carbohydrate tracking
-- 💪 Exercise logging and impact analysis
+### Características Planificadas
+- 🔔 Recordatorios y notificaciones
+- 📊 Análisis y reportes avanzados
+- 🤝 Integración con profesionales de la salud
+- 📱 Funcionalidad de exportación de datos
+- 🔄 Sincronización de datos entre dispositivos
+- 👥 Acceso para familiares/cuidadores
+- 🍎 Seguimiento de alimentos y carbohidratos
+- 💪 Registro de ejercicios y análisis de impacto
 
-## Technology Stack
+## Stack Tecnológico
 
-- **Frontend Framework**: Next.js 14
-- **UI Components**: Tailwind CSS + shadcn/ui
-- **Language**: TypeScript
-- **Icons**: Lucide Icons
-- **Fonts**: Inter (Google Fonts)
+- **Framework Frontend**: Next.js 14
+- **Componentes UI**: Tailwind CSS + shadcn/ui
+- **Lenguaje**: TypeScript
+- **Iconos**: Lucide Icons
+- **Fuentes**: Inter (Google Fonts)
 
-## Prerequisites
+## Requisitos Previos
 
-Before you begin, ensure you have the following installed:
-- Node.js (v18.17 or higher)
-- npm (v9.0 or higher)
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
+- Node.js (v18.17 o superior)
+- npm (v9.0 o superior)
 - Git
 
-## Installation
+## Instalación
 
-1. Clone the repository:
+1. Clonar el repositorio:
    ```bash
    git clone https://github.com/yourusername/TPP_insulA_app.git
    cd TPP_insulA_app
    ```
 
-2. Install dependencies:
+2. Instalar dependencias:
    ```bash
    npm install
    ```
 
-3. Create a `.env.local` file in the root directory and add any necessary environment variables:
+3. Crear un archivo `.env.local` en el directorio raíz y agregar las variables de entorno necesarias:
    ```env
    NEXT_PUBLIC_API_URL=your_api_url_here
    ```
 
-## Running the Application
+## Ejecutar la Aplicación
 
-### Development Mode
-To run the application in development mode:
+### Modo Desarrollo
+Para ejecutar la aplicación en modo desarrollo:
 ```bash
 npm run dev
 ```
-The application will be available at `http://localhost:3000`
+La aplicación estará disponible en `http://localhost:3000`
 
-### Production Build
-To create and run a production build:
+### Build de Producción
+Para crear y ejecutar una build de producción:
 ```bash
 npm run build
 npm start
 ```
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 TPP_insulA_app/
-├── app/                    # Next.js app directory
-│   ├── components/        # Shared components
-│   ├── lib/              # Utility functions and hooks
-│   ├── pages/            # Application pages
-│   └── styles/           # Global styles
-├── public/               # Static files
-└── components/           # Reusable UI components
+├── app/                    # Directorio de Next.js
+│   ├── components/        # Componentes compartidos
+│   ├── lib/              # Funciones de utilidad y hooks
+│   ├── pages/            # Páginas de la aplicación
+│   └── styles/           # Estilos globales
+├── public/               # Archivos estáticos
+└── components/           # Componentes UI reutilizables
 ```
 
-## Contributing
+## Contribuir
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Haz un fork del repositorio
+2. Crea tu rama de características (`git checkout -b feature/NuevaCaracteristica`)
+3. Realiza tus cambios (`git commit -m 'Agregar nueva característica'`)
+4. Sube la rama (`git push origin feature/NuevaCaracteristica`)
+5. Abre un Pull Request
 
-## License
+## Licencia
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
 
-## Support
+## Soporte
 
-For support, please open an issue in the GitHub repository or contact the development team.
+Para soporte, por favor abre un issue en el repositorio de GitHub o contacta al equipo de desarrollo.
 
-## Acknowledgments
+## Agradecimientos
 
-- Thanks to all contributors who have helped shape InsulinA
-- Special thanks to the diabetes community for their valuable feedback
-- Built with [shadcn/ui](https://ui.shadcn.com/) components
+- Gracias a todos los contribuidores que han ayudado a dar forma a InsulinA
+- Un agradecimiento especial a la comunidad de diabetes por sus valiosos comentarios
+- Construido con componentes de [shadcn/ui](https://ui.shadcn.com/)
