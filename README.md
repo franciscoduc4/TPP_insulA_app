@@ -1,15 +1,15 @@
-# insulA - Aplicación de Gestión de Insulina
+# insulA - Aplicación de Gestión de insulA
 
 *Leer esto en otros idiomas: [English](README.en.md)*
 
-InsulinA es una aplicación integral para la gestión de la diabetes diseñada para ayudar a los usuarios a realizar seguimiento, monitorear y gestionar su diabetes de manera efectiva. La aplicación proporciona una interfaz intuitiva para registrar niveles de glucosa, dosis de insulina y otras métricas importantes de salud, mientras ofrece análisis de tendencias y estadísticas.
+insulA es una aplicación integral para la gestión de la diabetes diseñada para ayudar a los usuarios a realizar seguimiento, monitorear y gestionar su diabetes de manera efectiva. La aplicación proporciona una interfaz intuitiva para registrar niveles de glucosa, dosis de insulA y otras métricas importantes de salud, mientras ofrece análisis de tendencias y estadísticas.
 
 ## Características
 
 ### Características Actuales
 - 📊 Panel de control con métricas clave de salud
 - 📝 Registro y seguimiento de niveles de glucosa
-- 💉 Registro de dosis de insulina
+- 💉 Registro de dosis de insulA
 - 📈 Análisis y visualización de tendencias
 - 📅 Vista de historial de datos
 - ⚙️ Configuraciones personalizables
@@ -106,6 +106,6 @@ Para soporte, por favor abre un issue en el repositorio de GitHub o contacta al 
 
 ## Agradecimientos
 
-- Gracias a todos los contribuidores que han ayudado a dar forma a InsulinA
+- Gracias a todos los contribuidores que han ayudado a dar forma a insulA
 - Un agradecimiento especial a la comunidad de diabetes por sus valiosos comentarios
 - Construido con componentes de [shadcn/ui](https://ui.shadcn.com/)
