@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  userId           String
+  type             String
+  provider         String
+  providerAccountId String
+  refresh_token    String?  @db.Text
+  access_token     String?  @db.Text
+  expires_at       Int?
+  token_type       String?
+  scope            String?
+  id_token         String?  @db.Text
+  session_state    String?
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  emailVerified     DateTime?
+  password          String?
+  firstName         String
+  lastName          String
+  role              String
+  dateOfBirth       DateTime
+  createdAt         DateTime  @default(now()) @db.Timestamptz
+  updatedAt         DateTime  @updatedAt @db.Timestamptz
+  accounts          Account[]
+  sessions          Session[]
+  foodRecords       FoodRecord[]
+  reminders         Reminder[]
+  bloodGlucose      BloodGlucoseRecord[]
+  insulinRecords    InsulinRecord[]
+  physicalActivities PhysicalActivity[]
+}
+
+model BloodGlucoseRecord {
+  id            BigInt    @id @default(autoincrement())
+  userId        String
+  glucoseValue  Float     @map("glucose_value")
+  timestamp     DateTime  @default(now()) @db.Timestamptz
+  context       String?   @db.Text
+  notes         String?   @db.Text
+  createdAt     DateTime  @default(now()) @db.Timestamptz
+  updatedAt     DateTime  @updatedAt @db.Timestamptz
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("BLOOD_GLUCOSE_RECORDS")
+}
+
+model InsulinRecord {
+  id           BigInt    @id @default(autoincrement())
+  userId       String
+  insulinType  String    @map("insulin_type") @db.Text
+  dosageUnits  Float     @map("dosage_units")
+  timestamp    DateTime  @default(now()) @db.Timestamptz
+  notes        String?   @db.Text
+  createdAt    DateTime  @default(now()) @db.Timestamptz
+  updatedAt    DateTime  @updatedAt @db.Timestamptz
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("INSULIN_RECORDS")
+}
+
+model PhysicalActivity {
+  id           BigInt    @id @default(autoincrement())
+  userId       String
+  activityType String    @map("activity_type") @db.Text
+  startTime    DateTime? @map("start_time") @db.Timestamptz
+  endTime      DateTime? @map("end_time") @db.Timestamptz
+  intensity    String?   @db.Text
+  notes        String?   @db.Text
+  createdAt    DateTime  @default(now()) @db.Timestamptz
+  updatedAt    DateTime  @updatedAt @db.Timestamptz
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("PHYSICAL_ACTIVITIES")
+}
+
+model FoodRecord {
+  id          BigInt    @id @default(autoincrement())
+  userId      String
+  timestamp   DateTime  @default(now()) @db.Timestamptz
+  description String    @db.Text
+  carbs       Float?
+  proteins    Float?
+  fats        Float?
+  createdAt   DateTime  @default(now()) @db.Timestamptz
+  updatedAt   DateTime  @updatedAt @db.Timestamptz
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("FOOD_RECORDS")
+}
+
+model Reminder {
+  id             BigInt    @id @default(autoincrement())
+  userId         String
+  reminderType   String    @map("reminder_type") @db.Text
+  message        String    @db.Text
+  scheduledTime  DateTime? @map("scheduled_time") @db.Timestamptz
+  status         String?
+  createdAt      DateTime  @default(now()) @db.Timestamptz
+  updatedAt      DateTime  @updatedAt @db.Timestamptz
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("REMINDERS")
+}
