@@ -7,6 +7,7 @@ insulA es una aplicación integral para la gestión de la diabetes diseñada par
 ## Características
 
 ### Características Actuales
+
 - 📊 Panel de control con métricas clave de salud
 - 📝 Registro y seguimiento de niveles de glucosa
 - 💉 Registro de dosis de insulA
@@ -17,6 +18,7 @@ insulA es una aplicación integral para la gestión de la diabetes diseñada par
 - 🌓 Soporte para modo claro/oscuro
 
 ### Características Planificadas
+
 - 🔔 Recordatorios y notificaciones
 - 📊 Análisis y reportes avanzados
 - 🤝 Integración con profesionales de la salud
@@ -37,6 +39,7 @@ insulA es una aplicación integral para la gestión de la diabetes diseñada par
 ## Requisitos Previos
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
+
 - Node.js (v18.17 o superior)
 - npm (v9.0 o superior)
 - Git
@@ -44,17 +47,20 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 ## Instalación
 
 1. Clonar el repositorio:
+
    ```bash
    git clone https://github.com/yourusername/TPP_insulA_app.git
    cd TPP_insulA_app
    ```
 
 2. Instalar dependencias:
+
    ```bash
    npm install
    ```
 
 3. Crear un archivo `.env.local` en el directorio raíz y agregar las variables de entorno necesarias:
+
    ```env
    NEXT_PUBLIC_API_URL=your_api_url_here
    ```
@@ -62,14 +68,19 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 ## Ejecutar la Aplicación
 
 ### Modo Desarrollo
+
 Para ejecutar la aplicación en modo desarrollo:
+
 ```bash
 npm run dev
 ```
+
 La aplicación estará disponible en `http://localhost:3000`
 
 ### Build de Producción
+
 Para crear y ejecutar una build de producción:
+
 ```bash
 npm run build
 npm start
