@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { getAuth } from "firebase/auth"
 import { BackButton } from "@/components/back-button"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
@@ -10,6 +12,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Smartphone, Activity, Cloud, Plus, Settings, Laptop, UserCog } from "lucide-react"
 
 export default function SettingsPage() {
+  const auth = getAuth()
+  const { toast } = useToast()
   const [connections, setConnections] = useState({
     accuCheck: false,
     googleFit: false,
@@ -21,9 +25,59 @@ export default function SettingsPage() {
     setConnections((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
-  const handleConnect = (service: string) => {
+  /**
+   * Conecta a un servicio de terceros.
+   * @param {string} service - Nombre del servicio al que se quiere conectar.
+   * @returns {void}
+   */
+  const handleConnect = async (service: string) => {
     console.log(`Connecting to ${service}...`)
-    // Implement actual connection logic here
+    if (service === "Nightscout") {
+      // URL y API Key de Nightscout
+      const url = prompt("Ingresá la URL de tu Nightscout")
+      const apiKey = prompt("Ingresá tu API Key de Nightscout")
+      console.log(`URL: ${url}, API Key: ${apiKey}`)
+
+      if (!url) return;
+
+      try {
+        // Llamada a la API para conectar la cuenta.
+        const response = await fetch('/api/nightscout/connect', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: auth?.currentUser?.uid,
+            nightscoutUrl: url,
+            apiKey: apiKey ?? '', 
+          }),
+        });
+        
+        if (response.ok) {
+          // Actualizar el estado de la conexión.
+          setConnections(prev => ({ ...prev, nightscout: true }));
+          toast({
+            title: "Conexión Exitosa",
+            description: "Se ha conectado correctamente a Nightscout.",
+          });
+        } else {
+          const errorData = await response.json();
+          toast({
+            title: "Conexión Fallida",
+            description: errorData.error || "No se pudo conectar a Nightscout.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Error connecting to Nightscout:", error);
+        toast({
+          title: "Connection Error",
+          description: "An error occurred while trying to connect.",
+          variant: "destructive",
+        });
+      }
+    }
   }
 
   return (
