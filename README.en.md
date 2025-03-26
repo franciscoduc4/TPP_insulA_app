@@ -7,6 +7,7 @@ InsulinA is a comprehensive diabetes management application designed to help use
 ## Features
 
 ### Current Features
+
 - 📊 Dashboard with key health metrics
 - 📝 Glucose level logging and tracking
 - 💉 Insulin dose recording
@@ -17,6 +18,7 @@ InsulinA is a comprehensive diabetes management application designed to help use
 - 🌓 Light/Dark mode support
 
 ### Planned Features
+
 - 🔔 Reminders and notifications
 - 📊 Advanced analytics and reporting
 - 🤝 Healthcare provider integration
@@ -37,6 +39,7 @@ InsulinA is a comprehensive diabetes management application designed to help use
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js (v18.17 or higher)
 - npm (v9.0 or higher)
 - Git
@@ -44,17 +47,20 @@ Before you begin, ensure you have the following installed:
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/TPP_insulA_app.git
    cd TPP_insulA_app
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Create a `.env.local` file in the root directory and add any necessary environment variables:
+
    ```env
    NEXT_PUBLIC_API_URL=your_api_url_here
    ```
@@ -62,14 +68,19 @@ Before you begin, ensure you have the following installed:
 ## Running the Application
 
 ### Development Mode
+
 To run the application in development mode:
+
 ```bash
 npm run dev
 ```
+
 The application will be available at `http://localhost:3000`
 
 ### Production Build
+
 To create and run a production build:
+
 ```bash
 npm run build
 npm start
@@ -77,7 +88,7 @@ npm start
 
 ## Project Structure
 
-```
+```sh
 TPP_insulA_app/
 ├── app/                    # Next.js app directory
 │   ├── components/        # Shared components
@@ -108,4 +119,4 @@ For support, please open an issue in the GitHub repository or contact the develo
 
 - Thanks to all contributors who have helped shape InsulinA
 - Special thanks to the diabetes community for their valuable feedback
-- Built with [shadcn/ui](https://ui.shadcn.com/) components 
+- Built with [shadcn/ui](https://ui.shadcn.com/) components
