@@ -38,6 +38,12 @@ export default function ProfilePage() {
     console.log("Connecting to diabetes management system")
   }
 
+  const handleLogout = () => {
+    // Aquí iría la lógica de cierre de sesión (limpiar tokens, etc.)
+    console.log("Cerrando sesión...")
+    router.push('/login')
+  }
+
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-2xl mx-auto space-y-6">
@@ -126,6 +132,18 @@ export default function ProfilePage() {
               <Button variant="outline" className="w-full" onClick={handleConnectDevice}>
                 <Link className="mr-2 h-4 w-4" />
                 Conectar Dispositivo de Diabetes
+              </Button>
+            </div>
+
+            <Separator />
+
+            <div className="flex justify-center">
+              <Button
+                variant="destructive"
+                onClick={handleLogout}
+                className="w-full"
+              >
+                Cerrar Sesión
               </Button>
             </div>
           </CardContent>
