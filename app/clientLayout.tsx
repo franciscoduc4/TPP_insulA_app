@@ -16,7 +16,7 @@ export default function ClientLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const showFooter = !["/profile", "/login", "/signup"].includes(pathname)
+  const showFooter = !["/profile", "/login", "/signup", "/forgot-password"].includes(pathname)
 
   return (
     <html lang="en">
