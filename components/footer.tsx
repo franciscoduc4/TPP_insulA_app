@@ -1,8 +1,9 @@
 "use client"
 
 import { usePathname, useRouter } from "next/navigation"
-import { Activity, Calendar, Home, Settings, Utensils, User } from "lucide-react"
+import { Activity, Calendar, Home, Settings, Utensils, User, Calculator } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export function Footer() {
   const router = useRouter()
@@ -50,15 +51,15 @@ export function Footer() {
       </div>
       <div className="flex flex-col items-center">
         <Button
-          variant={isActive("/trends") ? "default" : "ghost"}
+          variant={isActive("/insulin") ? "default" : "ghost"}
           size="icon"
           className="h-10 w-12 rounded-full"
-          onClick={() => router.push("/trends")}
+          onClick={() => router.push("/insulin")}
         >
-          <Activity className="h-5 w-5" />
-          <span className="sr-only">Tendencias</span>
+          <Calculator className="h-5 w-5" />
+          <span className="sr-only">Insulina</span>
         </Button>
-        <span className="text-xs mt-0">Tendencias</span>
+        <span className="text-xs mt-0">Insulina</span>
       </div>
       <div className="flex flex-col items-center">
         <Button
