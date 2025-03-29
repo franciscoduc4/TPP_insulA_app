@@ -118,6 +118,24 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background-light p-4">
       <div className="w-full max-w-md">
+        <div className="flex items-center justify-center mb-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-8 w-8 text-primary mr-2"
+          >
+            <path d="M18 20a6 6 0 0 0-12 0" />
+            <circle cx="12" cy="10" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+          </svg>
+          <h1 className="text-3xl font-bold text-primary">insulA</h1>
+        </div>
         <Card className="w-full shadow-lg border-0">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">Crear cuenta</CardTitle>
