@@ -15,9 +15,13 @@ export function BackButton() {
 
   const handleBack = () => {
     if (canGoBack) {
-      router.push(getPreviousPath())
+      const previousPath = getPreviousPath()
+      // Si la página anterior es el login, no hacer nada
+      if (previousPath === "/login") return
+      router.push(previousPath)
     } else {
-      router.push("/")
+      // Si no hay página anterior, ir al dashboard
+      router.push("/dashboard")
     }
   }
 

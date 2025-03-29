@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
 import { ChatInterface } from "@/components/chat-interface"
-import { BackButton } from "@/components/back-button"
 
 // Componente para mostrar el nivel de glucosa con indicador de tendencia
 const GlucoseLevel = ({
@@ -97,7 +96,6 @@ export default function DiabetesDashboard() {
         <div className="p-4 space-y-4">
           {/* Encabezado */}
           <div className="flex items-center justify-between">
-            <BackButton />
             <div>
               <h1 className="text-xl font-bold">Hola, María</h1>
               <p className="text-sm text-muted-foreground">Lunes, 2 de marzo</p>
