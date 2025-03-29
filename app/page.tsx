@@ -1,5 +1,5 @@
-import DiabetesDashboard from "@/components/dashboard"
+import { redirect } from 'next/navigation'
 
 export default function HomePage() {
-  return <DiabetesDashboard />
+  redirect('/login')
 } 

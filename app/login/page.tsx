@@ -25,6 +25,15 @@ export default function LoginPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
 
+  // Función para usar credenciales de demostración
+  const useDemoCredentials = () => {
+    setFormData({
+      email: "demo@insula.com",
+      password: "demo123",
+      rememberMe: false,
+    })
+  }
+
   // Función para manejar el cambio de inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -78,8 +87,8 @@ export default function LoginPage() {
         // Simulamos un inicio de sesión exitoso
         console.log("Inicio de sesión exitoso:", formData)
 
-        // Redirigir a la página principal después de un inicio de sesión exitoso
-        router.push("/")
+        // Redirigir al dashboard después de un inicio de sesión exitoso
+        router.push("/dashboard")
       } catch (error) {
         setErrors((prev) => ({
           ...prev,
@@ -172,6 +181,24 @@ export default function LoginPage() {
 
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white" disabled={isLoading}>
                 {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
+              </Button>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">O</span>
+                </div>
+              </div>
+
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={useDemoCredentials}
+              >
+                Usar credenciales de demostración
               </Button>
             </form>
           </CardContent>
