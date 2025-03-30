@@ -60,7 +60,7 @@ export default function HomePage() {
   const currentGlucose = mockGlucoseReadings[0].value
   const previousGlucose = mockGlucoseReadings[1].value
   const glucoseDiff = currentGlucose - previousGlucose
-  const lastUpdated = formatDistanceToNow(mockGlucoseReadings[0].timestamp, { addSuffix: true })
+  //const lastUpdated = formatDistanceToNow(mockGlucoseReadings[0].timestamp, { addSuffix: true })
   
   // Calcular promedio y tiempo en rango
   const averageGlucose = Math.round(
@@ -116,7 +116,7 @@ export default function HomePage() {
         <CardContent className="pt-6">
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-semibold text-lg">Glucosa Actual</h2>
-            <span className="text-xs text-gray-500">Actualizado {lastUpdated}</span>
+            <span className="text-xs text-gray-500">Actualizado ahora</span>
           </div>
           
           <div className="flex items-center justify-between">
@@ -272,7 +272,8 @@ export default function HomePage() {
                       {activity.type === 'insulin' && 'Dosis de insulina'}
                     </h4>
                     <p className="text-xs text-gray-500">
-                      {formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}
+                      {/*{formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}*/}
+                      {activity.timestamp.toLocaleString()}
                     </p>
                   </div>
                 </div>

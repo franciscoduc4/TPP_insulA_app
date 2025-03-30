@@ -1,54 +1,69 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Loader2, ArrowUp, ArrowDown, Check, Utensils, Syringe, Droplet, Plus, MessageCircle, Activity } from 'lucide-react'
+import { Loader2, ArrowUp, ArrowDown, Check, Utensils, Syringe, Droplet, Plus, MessageCircle, Activity, Settings } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { BackButton } from "@/components/back-button"
 import { ChatInterface } from "@/components/chat-interface"
+import Link from 'next/link'
+
+interface GlucoseReading {
+  value: number
+  timestamp: Date | null
+}
+
+interface Activity {
+  type: 'glucose' | 'meal' | 'insulin'
+  value?: number
+  mealType?: string
+  carbs?: number
+  units?: number
+  timestamp: Date | null
+}
 
 // Datos de ejemplo
-const mockGlucoseReadings = [
-  { value: 142, timestamp: new Date() },
-  { value: 135, timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000) },
-  { value: 128, timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000) },
-  { value: 145, timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000) },
-  { value: 138, timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000) },
-  { value: 132, timestamp: new Date(Date.now() - 10 * 60 * 60 * 1000) }
+const mockGlucoseReadings: GlucoseReading[] = [
+  { value: 142, timestamp: null },
+  { value: 135, timestamp: null },
+  { value: 128, timestamp: null },
+  { value: 145, timestamp: null },
+  { value: 138, timestamp: null },
+  { value: 132, timestamp: null }
 ]
 
-const mockActivities = [
+const mockActivities: Activity[] = [
   {
     type: 'glucose',
     value: 142,
-    timestamp: new Date()
+    timestamp: null
   },
   {
     type: 'meal',
     mealType: 'Almuerzo',
     carbs: 45,
-    timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000)
+    timestamp: null
   },
   {
     type: 'insulin',
     units: 4.2,
-    timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000)
+    timestamp: null
   },
   {
     type: 'glucose',
     value: 135,
-    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000)
+    timestamp: null
   },
   {
     type: 'meal',
     mealType: 'Desayuno',
     carbs: 30,
-    timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000)
+    timestamp: null
   }
 ]
 
@@ -57,20 +72,41 @@ export default function DashboardPage() {
   const [glucoseValue, setGlucoseValue] = useState('')
   const [notes, setNotes] = useState('')
   const [isChatOpen, setIsChatOpen] = useState(false)
+  const [readings, setReadings] = useState<GlucoseReading[]>(mockGlucoseReadings)
+  const [activities, setActivities] = useState<Activity[]>(mockActivities)
+  
+  useEffect(() => {
+    // Generar fechas solo en el cliente
+    const now = new Date()
+    const updatedReadings = mockGlucoseReadings.map((reading, index) => ({
+      ...reading,
+      timestamp: new Date(now.getTime() - index * 2 * 60 * 60 * 1000)
+    }))
+    
+    const updatedActivities = mockActivities.map((activity, index) => ({
+      ...activity,
+      timestamp: new Date(now.getTime() - index * 60 * 60 * 1000)
+    }))
+    
+    setReadings(updatedReadings)
+    setActivities(updatedActivities)
+  }, [])
   
   // Calcular estadísticas
-  const currentGlucose = mockGlucoseReadings[0].value
-  const previousGlucose = mockGlucoseReadings[1].value
+  const currentGlucose = readings[0]?.value || 0
+  const previousGlucose = readings[1]?.value || 0
   const glucoseDiff = currentGlucose - previousGlucose
-  const lastUpdated = formatDistanceToNow(mockGlucoseReadings[0].timestamp, { addSuffix: true })
+  const lastUpdated = readings[0]?.timestamp 
+    ? formatDistanceToNow(readings[0].timestamp, { addSuffix: true })
+    : ''
   
   // Calcular promedio y tiempo en rango
   const averageGlucose = Math.round(
-    mockGlucoseReadings.reduce((acc, reading) => acc + reading.value, 0) / mockGlucoseReadings.length
+    readings.reduce((acc, reading) => acc + reading.value, 0) / readings.length
   )
   
   const timeInRange = Math.round(
-    (mockGlucoseReadings.filter(reading => reading.value >= 80 && reading.value <= 140).length / mockGlucoseReadings.length) * 100
+    (readings.filter(reading => reading.value >= 80 && reading.value <= 140).length / readings.length) * 100
   )
   
   // Estado de glucosa
@@ -105,11 +141,17 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-center mb-6">
+      <div className="flex items-center justify-between mb-6">
+        <BackButton />
         <div className="flex items-center space-x-2">
           <Activity className="h-8 w-8 text-apple-green" />
           <h1 className="text-3xl font-bold text-text-primary">Indicadores</h1>
         </div>
+        <Link href="/settings">
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Settings className="h-5 w-5 text-gray-600" />
+          </Button>
+        </Link>
       </div>
 
       {/* Status and Add Reading Button */}
@@ -214,9 +256,9 @@ export default function DashboardPage() {
           <div className="mt-4 h-20 relative">
             <div className="absolute inset-0 overflow-hidden rounded-lg bg-gray-50">
               <div className="flex items-end h-full w-full justify-between px-2">
-                {mockGlucoseReadings.slice(0, 6).reverse().map((reading, index) => {
-                  const max = Math.max(...mockGlucoseReadings.map(r => r.value))
-                  const min = Math.min(...mockGlucoseReadings.map(r => r.value))
+                {readings.slice(0, 6).reverse().map((reading, index) => {
+                  const max = Math.max(...readings.map(r => r.value))
+                  const min = Math.min(...readings.map(r => r.value))
                   const range = max - min || 1
                   const height = ((reading.value - min) / range) * 70 + 10
                   
@@ -310,7 +352,7 @@ export default function DashboardPage() {
           </div>
           
           <div className="space-y-4">
-            {mockActivities.map((activity, index) => (
+            {activities.map((activity, index) => (
               <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div className="flex items-center">
                   {activity.type === 'glucose' && (
@@ -335,7 +377,9 @@ export default function DashboardPage() {
                       {activity.type === 'insulin' && 'Dosis de insulina'}
                     </h4>
                     <p className="text-xs text-gray-500">
-                      {formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}
+                      {activity.timestamp 
+                        ? formatDistanceToNow(activity.timestamp, { addSuffix: true })
+                        : ''}
                     </p>
                   </div>
                 </div>

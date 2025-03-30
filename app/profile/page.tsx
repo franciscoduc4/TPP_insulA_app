@@ -4,13 +4,14 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Camera, Edit2, Link } from "lucide-react"
+import { Camera, Edit2, Link as LinkIcon, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { BackButton } from "@/components/back-button"
+import Link from "next/link"
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -49,10 +50,17 @@ export default function ProfilePage() {
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <BackButton />
-          <Button variant="outline" onClick={() => setIsEditing(!isEditing)}>
-            <Edit2 className="mr-2 h-4 w-4" />
-            {isEditing ? "Cancelar" : "Editar Perfil"}
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Link href="/settings">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Settings className="h-5 w-5 text-gray-600" />
+              </Button>
+            </Link>
+            <Button variant="outline" onClick={() => setIsEditing(!isEditing)}>
+              <Edit2 className="mr-2 h-4 w-4" />
+              {isEditing ? "Cancelar" : "Editar Perfil"}
+            </Button>
+          </div>
         </div>
 
         <Card>
@@ -130,7 +138,7 @@ export default function ProfilePage() {
             <div>
               <h3 className="text-lg font-semibold mb-2">Dispositivos Conectados</h3>
               <Button variant="outline" className="w-full" onClick={handleConnectDevice}>
-                <Link className="mr-2 h-4 w-4" />
+                <LinkIcon className="mr-2 h-4 w-4" />
                 Conectar Dispositivo de Diabetes
               </Button>
             </div>
