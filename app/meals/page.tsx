@@ -120,9 +120,9 @@ export default function MealsPage() {
               </Select>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-12">
               <div className="space-y-2">
-                <Label htmlFor="carbs">Carbohidratos (g)</Label>
+                <Label htmlFor="carbs">Carbohidratos(g)</Label>
                 <Input
                   id="carbs"
                   type="number"
@@ -132,7 +132,7 @@ export default function MealsPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="protein">Proteínas (g)</Label>
+                <Label htmlFor="protein">Proteínas(g)</Label>
                 <Input
                   id="protein"
                   type="number"
@@ -142,7 +142,7 @@ export default function MealsPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="fat">Grasas (g)</Label>
+                <Label htmlFor="fat">Grasas(g)</Label>
                 <Input
                   id="fat"
                   type="number"

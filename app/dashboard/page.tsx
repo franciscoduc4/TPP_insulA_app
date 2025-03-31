@@ -141,12 +141,14 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between mb-6">
-        <BackButton />
-        <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-between mb-6 w-full">
+        {/* Contenedor centrado del título e ícono */}
+        <div className="flex items-center space-x-2 mx-auto">
           <Activity className="h-8 w-8 text-apple-green" />
           <h1 className="text-3xl font-bold text-text-primary">Indicadores</h1>
         </div>
+
+        {/* Botón alineado a la derecha */}
         <Link href="/settings">
           <Button variant="ghost" size="icon" className="rounded-full">
             <Settings className="h-5 w-5 text-gray-600" />
