@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="images\logo-fiuba.png" alt="Logo FIUBA" width="800"/>
+</div>
+
 # insulA - Aplicación de Gestión de insulina
 
 *Leer esto en otros idiomas: [English](README.en.md)*
